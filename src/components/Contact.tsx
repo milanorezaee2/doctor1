@@ -1,187 +1,98 @@
-import { useState } from 'react';
-import { MapPin, Phone, Mail, Clock, Calendar, CheckCircle, ChevronLeft } from 'lucide-react';
+import { CalendarDays, Clock, Mail, MapPin, Phone, ShieldCheck } from 'lucide-react';
 import { useReveal } from '@/hooks/useReveal';
 
 const contactInfo = [
   {
     icon: MapPin,
-    label: 'آدرس',
-    value: 'تهران، خیابان ولیعصر، بالاتر از پارک‌وی، کلینیک تخصصی طب سوزنی',
+    label: 'نشانی کلینیک',
+    value: 'در انتظار تأیید نشانی واقعی',
     color: 'from-cyan-500 to-teal-500',
   },
   {
     icon: Phone,
-    label: 'تلفن تماس',
-    value: '۰۲۱-۲۲۳۴۵۶۷۸',
+    label: 'شماره تماس',
+    value: 'در انتظار تأیید شماره تماس',
     color: 'from-teal-500 to-emerald-500',
   },
   {
     icon: Mail,
     label: 'ایمیل',
-    value: 'info@dr-hashtroodi.com',
+    value: 'در انتظار تأیید ایمیل',
     color: 'from-sky-500 to-blue-500',
   },
   {
     icon: Clock,
     label: 'ساعات کاری',
-    value: 'شنبه تا چهارشنبه: ۹ تا ۱۸ | پنجشنبه: ۹ تا ۱۳',
+    value: 'پس از تأیید اعلام می‌شود',
     color: 'from-violet-500 to-purple-600',
   },
 ];
 
 export default function Contact() {
   const { ref, active } = useReveal<HTMLDivElement>();
-  const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({ name: '', phone: '', condition: '', message: '' });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setForm({ name: '', phone: '', condition: '', message: '' });
-    }, 4000);
-  };
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden" style={{ background: '#070e20' }}>
-
-      {/* ── Background ── */}
+    <section id="contact" className="relative overflow-hidden bg-white py-24">
       <div className="absolute inset-0 medical-pattern opacity-12" />
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-500/7 rounded-full blur-[140px]" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-teal-500/7 rounded-full blur-[120px]" />
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-500/25 to-transparent" />
+      <div className="absolute right-0 top-0 h-[500px] w-[500px] rounded-full bg-cyan-500/7 blur-[140px]" />
+      <div className="absolute bottom-0 left-0 h-[400px] w-[400px] rounded-full bg-teal-500/7 blur-[120px]" />
+      <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-500/25 to-transparent" />
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
         <div ref={ref} className={`reveal ${active ? 'active' : ''}`}>
-
-          {/* ── Header ── */}
-          <div className="text-center mb-14">
-            <span className="section-label tag-dark mb-4">
-              تماس و نوبت‌دهی
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-4 mb-3">
-              <span className="gradient-text">رزرو نوبت</span> آنلاین
+          <div className="mb-14 text-center">
+            <span className="section-label tag-cyan mb-4">تماس و نوبت‌دهی</span>
+            <h2 className="mb-3 mt-4 text-3xl font-black text-slate-900 sm:text-4xl lg:text-5xl">
+              <span className="gradient-text">راه‌های ارتباطی</span>
             </h2>
-            <p className="text-slate-400 max-w-xl mx-auto text-sm leading-relaxed">
-              برای رزرو نوبت یا مشاوره رایگان، فرم زیر را تکمیل کنید یا مستقیماً با ما تماس بگیرید
+            <p className="mx-auto max-w-xl text-sm leading-relaxed text-slate-600">
+              اطلاعات تماس و نشانی پس از تأیید درج می‌شوند تا از انتشار جزئیات نادرست جلوگیری شود.
             </p>
-            <div className="section-divider w-24 mx-auto mt-5" />
+            <div className="section-divider mx-auto mt-5 w-24" />
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 xl:gap-12">
-
-            {/* ── Contact info column ── */}
-            <div className="space-y-3">
-              {contactInfo.map((info, i) => {
+          <div className="grid gap-8 lg:grid-cols-2 xl:gap-12">
+            <div className="grid gap-3 sm:grid-cols-2">
+              {contactInfo.map((info) => {
                 const Icon = info.icon;
                 return (
                   <div
-                    key={i}
-                    className="group flex items-start gap-4 p-5 rounded-2xl border border-white/7 bg-white/3 hover:bg-white/6 transition-all duration-300"
+                    key={info.label}
+                    className="flex min-h-32 items-start gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-colors duration-300 hover:bg-slate-50"
                   >
-                    <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${info.color} flex items-center justify-center flex-shrink-0 shadow-md`}>
-                      <Icon className="w-5 h-5 text-white" />
+                    <div className={`flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${info.color} shadow-md`}>
+                      <Icon className="h-5 w-5 text-white" />
                     </div>
                     <div>
-                      <p className="text-cyan-300 text-xs font-semibold uppercase tracking-wide mb-1">{info.label}</p>
-                      <p className="text-white/80 text-sm leading-relaxed">{info.value}</p>
+                      <p className="mb-1 text-xs font-semibold text-cyan-700">{info.label}</p>
+                      <p className="text-sm leading-relaxed text-slate-600">{info.value}</p>
                     </div>
                   </div>
                 );
               })}
-
-              {/* Map */}
-              <div className="rounded-2xl overflow-hidden h-44 border border-white/8">
-                <iframe
-                  src="https://maps.google.com/maps?q=Tehran%20Valiasr&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                  className="w-full h-full border-0 opacity-75"
-                  loading="lazy"
-                  title="موقعیت کلینیک"
-                />
-              </div>
             </div>
 
-            {/* ── Form column ── */}
-            <div className="rounded-2xl border border-white/8 bg-white/3 p-7">
-              {submitted ? (
-                <div className="h-full flex flex-col items-center justify-center text-center py-16">
-                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-emerald-500 to-teal-400 flex items-center justify-center mb-6 animate-bounceIn shadow-xl">
-                    <CheckCircle className="w-10 h-10 text-white" />
-                  </div>
-                  <h3 className="text-white font-black text-xl mb-3">درخواست شما ثبت شد!</h3>
-                  <p className="text-slate-400 text-sm max-w-xs leading-relaxed">
-                    تیم ما در اسرع وقت با شما تماس می‌گیرد.
+            <div className="relative flex flex-col justify-center overflow-hidden rounded-3xl border border-cyan-100 bg-gradient-to-br from-cyan-50 via-white to-teal-50 p-7 shadow-sm sm:p-10">
+              <div className="absolute -left-12 -top-12 h-48 w-48 rounded-full bg-cyan-200/30 blur-3xl" />
+              <div className="relative">
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-cyan-700 shadow-sm ring-1 ring-cyan-100">
+                  <CalendarDays className="h-7 w-7" />
+                </div>
+                <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.28em] text-teal-700">رزرو نوبت</p>
+                <h3 className="mb-4 text-2xl font-black leading-tight text-slate-900 sm:text-3xl">
+                  سامانه نوبت‌دهی هنوز فعال نیست
+                </h3>
+                <p className="mb-7 text-sm leading-relaxed text-slate-600">
+                  در حال حاضر ثبت آنلاین درخواست از طریق این صفحه فعال نیست. پس از تأیید اطلاعات تماس و اتصال سامانه، امکان رزرو آنلاین اضافه می‌شود.
+                </p>
+                <div className="flex items-start gap-3 rounded-2xl border border-white/80 bg-white/80 p-4">
+                  <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-teal-600" />
+                  <p className="text-xs leading-relaxed text-slate-600">
+                    برای فعال‌سازی تماس یا رزرو آنلاین، شماره تلفن، ایمیل، نشانی و روش واقعی ثبت نوبت باید تأیید شوند.
                   </p>
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <label className="block text-cyan-300 text-xs font-semibold uppercase tracking-wide mb-2">نام و نام خانوادگی</label>
-                    <input
-                      type="text"
-                      required
-                      value={form.name}
-                      onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      className="input-dark"
-                      placeholder="نام خود را وارد کنید"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-cyan-300 text-xs font-semibold uppercase tracking-wide mb-2">شماره تماس</label>
-                    <input
-                      type="tel"
-                      required
-                      value={form.phone}
-                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                      className="input-dark"
-                      placeholder="۰۹۱۲۳۴۵۶۷۸۹"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-cyan-300 text-xs font-semibold uppercase tracking-wide mb-2">نوع بیماری</label>
-                    <select
-                      required
-                      value={form.condition}
-                      onChange={(e) => setForm({ ...form, condition: e.target.value })}
-                      className="input-dark"
-                      style={{ colorScheme: 'dark' }}
-                    >
-                      <option value="" className="bg-[#0a1628]">انتخاب کنید</option>
-                      <option value="ms" className="bg-[#0a1628]">ام‌اس</option>
-                      <option value="gbs" className="bg-[#0a1628]">گیلن‌باره</option>
-                      <option value="autoimmune" className="bg-[#0a1628]">بیماری خودایمنی</option>
-                      <option value="neuropathy" className="bg-[#0a1628]">نوروپاتی</option>
-                      <option value="vegetative" className="bg-[#0a1628]">بیماری Vegetative</option>
-                      <option value="other" className="bg-[#0a1628]">سایر</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-cyan-300 text-xs font-semibold uppercase tracking-wide mb-2">توضیحات</label>
-                    <textarea
-                      rows={4}
-                      value={form.message}
-                      onChange={(e) => setForm({ ...form, message: e.target.value })}
-                      className="input-dark resize-none"
-                      placeholder="علائم و شرح حال خود را بنویسید..."
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="w-full btn-primary py-3.5 rounded-xl font-bold flex items-center justify-center gap-2 text-sm relative z-10"
-                  >
-                    <Calendar className="w-4 h-4" />
-                    ثبت درخواست نوبت
-                    <ChevronLeft className="w-4 h-4" />
-                  </button>
-                </form>
-              )}
+              </div>
             </div>
-
           </div>
         </div>
       </div>

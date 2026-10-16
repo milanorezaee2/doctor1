@@ -5,6 +5,9 @@ export function useReveal<T extends HTMLElement = HTMLDivElement>() {
   const [active, setActive] = useState(false);
 
   useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -16,15 +19,8 @@ export function useReveal<T extends HTMLElement = HTMLDivElement>() {
       { threshold: 0.15 }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
+    observer.observe(element);
+    return () => observer.disconnect();
   }, []);
 
   return { ref, active };
