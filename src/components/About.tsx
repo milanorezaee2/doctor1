@@ -2,7 +2,7 @@ import { GraduationCap, Award, Stethoscope, BookOpen, ArrowLeft, Quote } from 'l
 import { useReveal } from '@/hooks/useReveal';
 
 /* ─── Images ──────────────────────────────────── */
-const IMG_MAIN  = 'https://images.pexels.com/photos/8313210/pexels-photo-8313210.jpeg?auto=compress&cs=tinysrgb&h=900&w=700';
+const IMG_MAIN  = `${import.meta.env.BASE_URL}images/doctor-hashtroodi.jpg`;
 const IMG_LAB   = 'https://images.pexels.com/photos/8312859/pexels-photo-8312859.jpeg?auto=compress&cs=tinysrgb&h=400&w=600';
 const IMG_CONF  = 'https://images.pexels.com/photos/6010927/pexels-photo-6010927.jpeg?auto=compress&cs=tinysrgb&h=400&w=600';
 
@@ -53,8 +53,8 @@ export default function About() {
   return (
     <section id="about" className="relative overflow-hidden bg-white">
 
-      {/* ══ TOP dark band ══ */}
-      <div className="bg-[#04090f] relative overflow-hidden">
+      {/* ══ TOP white band ══ */}
+      <div className="bg-white relative overflow-hidden">
         {/* subtle grid */}
         <div className="absolute inset-0 hero-dots opacity-20 pointer-events-none" />
         {/* glow */}
@@ -75,7 +75,7 @@ export default function About() {
                   </span>
                 </div>
 
-                <h2 className="text-4xl sm:text-5xl xl:text-6xl font-black text-white leading-[1.0] tracking-tight mb-6">
+                <h2 className="text-4xl sm:text-5xl xl:text-6xl font-black text-slate-900 leading-[1.0] tracking-tight mb-6">
                   پیشگام
                   <br />
                   <span className="hero-name-gradient">درمان نوین</span>
@@ -83,18 +83,18 @@ export default function About() {
                   ایران
                 </h2>
 
-                <p className="text-slate-400 text-sm leading-relaxed max-w-sm mb-8">
+                <p className="text-slate-600 text-sm leading-relaxed max-w-sm mb-8">
                   دکتر محمد رضا هشترودی با بیش از دو دهه تجربه بالینی، ترکیب بی‌نظیری از دانش مدرن
                   و حکمت طب سنتی را به ارمغان آورده است.
                 </p>
 
                 {/* Quote block */}
                 <div className="relative pl-5 border-r-2 border-cyan-500/40">
-                  <Quote className="absolute -top-1 right-[-13px] w-5 h-5 text-cyan-500 bg-[#04090f] p-0.5" />
-                  <p className="text-white/55 text-sm italic leading-relaxed">
+                  <Quote className="absolute -top-1 right-[-13px] w-5 h-5 text-cyan-600 bg-white p-0.5" />
+                  <p className="text-slate-600 text-sm italic leading-relaxed">
                     «هدف من ترکیب خرد طب سنتی با دستاوردهای پزشکی نوین برای درمان ریشه‌ای بیماری‌های صعب‌العلاج است.»
                   </p>
-                  <p className="text-cyan-400 text-xs font-bold mt-2">— دکتر محمد رضا هشترودی</p>
+                  <p className="text-cyan-700 text-xs font-bold mt-2">— دکتر محمد رضا هشترودی</p>
                 </div>
 
               </div>
@@ -130,15 +130,15 @@ export default function About() {
 
                   {/* Floating stat overlay */}
                   <div className="absolute -bottom-4 -left-4 z-10">
-                    <div className="flex items-center gap-3 bg-[#04090f]/90 backdrop-blur-xl border border-white/10 rounded-2xl px-5 py-3.5 shadow-2xl ring-1 ring-cyan-500/10">
+                    <div className="flex items-center gap-3 bg-white/95 backdrop-blur-xl border border-slate-200 rounded-2xl px-5 py-3.5 shadow-2xl ring-1 ring-cyan-500/10">
                       <div className="text-right">
                         <p className="text-3xl font-black text-white leading-none hero-stat-number">+۵۰۰۰</p>
-                        <p className="text-white/40 text-[10px] font-semibold mt-0.5">بیمار درمان‌شده</p>
+                        <p className="text-slate-500 text-[10px] font-semibold mt-0.5">بیمار درمان‌شده</p>
                       </div>
-                      <div className="w-px h-8 bg-white/10" />
+                      <div className="w-px h-8 bg-slate-200" />
                       <div className="text-right">
                         <p className="text-3xl font-black text-white leading-none hero-stat-number">+۲۰</p>
-                        <p className="text-white/40 text-[10px] font-semibold mt-0.5">سال تجربه</p>
+                        <p className="text-slate-500 text-[10px] font-semibold mt-0.5">سال تجربه</p>
                       </div>
                     </div>
                   </div>

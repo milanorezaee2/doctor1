@@ -45,11 +45,8 @@ export default function AnimatedBackground() {
     };
     window.addEventListener('resize', handleResize);
 
-    let time = 0;
-
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
-      time += 0.01;
 
       // Draw connections
       for (let i = 0; i < particles.length; i++) {

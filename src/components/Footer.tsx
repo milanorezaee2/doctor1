@@ -1,83 +1,51 @@
-import { Activity, Phone, Mail, MapPin, Instagram, Youtube, Linkedin, Heart } from 'lucide-react';
+import { Activity, Heart, Mail, MapPin, Phone } from 'lucide-react';
 
 const quickLinks = [
-  { label: 'خانه',              id: 'home' },
-  { label: 'درباره پزشک',      id: 'about' },
-  { label: 'خدمات',            id: 'services' },
-  { label: 'بیماری‌های درمان‌شدنی', id: 'conditions' },
-  { label: 'ویدیوها',          id: 'videos' },
+  { label: 'خانه', id: 'home' },
+  { label: 'درباره پزشک', id: 'about' },
+  { label: 'خدمات', id: 'services' },
+  { label: 'زمینه‌های ارزیابی', id: 'conditions' },
+  { label: 'تماس', id: 'contact' },
 ];
 
-const serviceLinks = ['طب سوزنی', 'لیزر درمانی', 'اکوپانکچر', 'درمان ام‌اس', 'درمان گیلن‌باره'];
-
-const socials = [
-  { icon: Instagram, href: '#',            hoverColor: 'hover:bg-gradient-to-br hover:from-purple-500 hover:to-pink-500', label: 'اینستاگرام' },
-  { icon: Youtube,   href: 'https://www.youtube.com/@dr.hashtroodi', hoverColor: 'hover:bg-red-600', label: 'یوتیوب' },
-  { icon: Linkedin,  href: '#',            hoverColor: 'hover:bg-blue-600', label: 'لینکدین' },
-];
+const serviceLinks = ['طب سوزنی', 'لیزر درمانی', 'اکوپانکچر', 'روش‌های مکمل', 'ارزیابی فردمحور'];
 
 export default function Footer() {
+  const persianYear = new Intl.DateTimeFormat('fa-IR-u-ca-persian', { year: 'numeric' }).format(new Date());
   const scrollTo = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
   return (
-    <footer className="relative z-10 overflow-hidden" style={{ background: '#040a16' }}>
-
-      {/* ── Subtle top border ── */}
+    <footer className="relative z-10 overflow-hidden bg-slate-50">
       <div className="h-px bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent" />
-
-      {/* ── Background ── */}
       <div className="absolute inset-0 medical-pattern opacity-8" />
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-
-        {/* ── Top grid ── */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 py-14">
-
-          {/* Brand */}
-          <div className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-600 to-teal-500 flex items-center justify-center shadow-lg">
-                <Activity className="w-5 h-5 text-white" />
+      <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-8 py-14 md:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <div className="mb-5 flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-600 to-teal-500 shadow-lg">
+                <Activity className="h-5 w-5 text-white" />
               </div>
               <div>
-                <p className="text-white font-bold text-sm leading-tight">دکتر محمد رضا هشترودی</p>
-                <p className="text-cyan-400 text-[11px] font-medium mt-0.5">متخصص طب سوزنی و لیزر درمانی</p>
+                <p className="text-sm font-bold leading-tight text-slate-900">دکتر محمدرضا هشترودی</p>
+                <p className="mt-0.5 text-[11px] font-medium text-cyan-700">طب سوزنی و لیزر درمانی</p>
               </div>
             </div>
-            <p className="text-slate-400 text-xs leading-relaxed mb-5">
-              درمان نوین بیماری‌های عصبی و خودایمنی با ترکیب طب سنتی و تکنولوژی روز پزشکی.
-              سلامت شما، تخصص ماست.
+            <p className="text-xs leading-relaxed text-slate-600">
+              آشنایی با روش‌های مراقبتی و بررسی گزینه‌های مکمل؛ هر تصمیم درمانی باید با توجه به شرایط فرد و هماهنگی با پزشک معالج گرفته شود.
             </p>
-            <div className="flex gap-2">
-              {socials.map((s, i) => {
-                const Icon = s.icon;
-                return (
-                  <a
-                    key={i}
-                    href={s.href}
-                    target={s.href !== '#' ? '_blank' : undefined}
-                    rel="noopener noreferrer"
-                    aria-label={s.label}
-                    className={`w-9 h-9 rounded-xl bg-white/5 border border-white/8 flex items-center justify-center transition-all duration-300 ${s.hoverColor} hover:border-transparent hover:scale-105`}
-                  >
-                    <Icon className="w-4 h-4 text-white" />
-                  </a>
-                );
-              })}
-            </div>
           </div>
 
-          {/* Quick links */}
           <div>
-            <h4 className="text-white font-bold text-sm mb-5">دسترسی سریع</h4>
+            <h4 className="mb-5 text-sm font-bold text-slate-900">دسترسی سریع</h4>
             <ul className="space-y-2.5">
               {quickLinks.map((link) => (
                 <li key={link.id}>
                   <button
                     onClick={() => scrollTo(link.id)}
-                    className="text-slate-400 text-xs hover:text-cyan-400 transition-colors duration-200 flex items-center gap-1.5 group"
+                    className="group flex items-center gap-1.5 text-xs text-slate-600 transition-colors duration-200 hover:text-cyan-700"
                   >
-                    <span className="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-cyan-400 transition-colors" />
+                    <span className="h-1 w-1 rounded-full bg-slate-400 transition-colors group-hover:bg-cyan-500" />
                     {link.label}
                   </button>
                 </li>
@@ -85,54 +53,52 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
           <div>
-            <h4 className="text-white font-bold text-sm mb-5">خدمات</h4>
+            <h4 className="mb-5 text-sm font-bold text-slate-900">خدمات و روش‌ها</h4>
             <ul className="space-y-2.5">
-              {serviceLinks.map((s) => (
-                <li key={s}>
-                  <span className="text-slate-400 text-xs hover:text-cyan-400 transition-colors duration-200 cursor-pointer flex items-center gap-1.5 group">
-                    <span className="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-cyan-400 transition-colors" />
-                    {s}
-                  </span>
+              {serviceLinks.map((service) => (
+                <li key={service}>
+                  <button
+                    onClick={() => scrollTo('services')}
+                    className="group flex items-center gap-1.5 text-xs text-slate-600 transition-colors duration-200 hover:text-cyan-700"
+                  >
+                    <span className="h-1 w-1 rounded-full bg-slate-400 transition-colors group-hover:bg-cyan-500" />
+                    {service}
+                  </button>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
-            <h4 className="text-white font-bold text-sm mb-5">تماس</h4>
+            <h4 className="mb-5 text-sm font-bold text-slate-900">اطلاعات تماس</h4>
             <ul className="space-y-3">
-              <li className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-cyan-500 flex-shrink-0 mt-0.5" />
-                <span className="text-slate-400 text-xs leading-relaxed">تهران، خیابان ولیعصر، کلینیک تخصصی طب سوزنی</span>
+              <li className="flex items-start gap-3 text-xs leading-relaxed text-slate-600">
+                <Phone className="mt-0.5 h-4 w-4 flex-shrink-0 text-cyan-600" />
+                <span>شماره تماس: در انتظار تأیید</span>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-cyan-500 flex-shrink-0" />
-                <span className="text-slate-400 text-xs">۰۲۱-۲۲۳۴۵۶۷۸</span>
+              <li className="flex items-start gap-3 text-xs leading-relaxed text-slate-600">
+                <Mail className="mt-0.5 h-4 w-4 flex-shrink-0 text-cyan-600" />
+                <span>ایمیل: در انتظار تأیید</span>
               </li>
-              <li className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-cyan-500 flex-shrink-0" />
-                <span className="text-slate-400 text-xs">info@dr-hashtroodi.com</span>
+              <li className="flex items-start gap-3 text-xs leading-relaxed text-slate-600">
+                <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-cyan-600" />
+                <span>نشانی: در انتظار تأیید</span>
               </li>
             </ul>
           </div>
-
         </div>
 
-        {/* ── Bottom bar ── */}
-        <div className="py-5 border-t border-white/6 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="flex flex-col items-center justify-between gap-3 border-t border-slate-200 py-5 sm:flex-row">
           <p className="text-[11px] text-slate-500">
-            © ۱۴۰۴ — تمامی حقوق برای دکتر محمد رضا هشترودی محفوظ است
+            © {persianYear} — دکتر محمدرضا هشترودی
           </p>
-          <p className="text-[11px] text-slate-500 flex items-center gap-1">
+          <p className="flex items-center gap-1 text-[11px] text-slate-500">
             طراحی با
-            <Heart className="w-3 h-3 text-rose-500 fill-rose-500" />
+            <Heart className="h-3 w-3 fill-rose-500 text-rose-500" />
             برای سلامتی شما
           </p>
         </div>
-
       </div>
     </footer>
   );
