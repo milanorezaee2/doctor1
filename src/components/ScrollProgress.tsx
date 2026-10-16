@@ -6,19 +6,25 @@ export default function ScrollProgress() {
   useEffect(() => {
     const handleScroll = () => {
       const total = document.documentElement.scrollHeight - window.innerHeight;
-      const current = window.scrollY;
-      setProgress((current / total) * 100);
+      setProgress(total > 0 ? (window.scrollY / total) * 100 : 0);
     };
-
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 right-0 h-1 z-[60] pointer-events-none">
+    <div className="fixed top-0 left-0 right-0 h-[3px] z-[60] pointer-events-none">
+      {/* Track */}
+      <div className="absolute inset-0 bg-slate-200/20" />
+      {/* Progress */}
       <div
-        className="h-full bg-gradient-to-l from-cyan-600 via-teal-400 to-cyan-500 transition-all duration-150"
+        className="h-full bg-gradient-to-l from-teal-400 via-cyan-500 to-sky-500 transition-[width] duration-100"
         style={{ width: `${progress}%` }}
+      />
+      {/* Glow dot at end */}
+      <div
+        className="absolute top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-cyan-400 shadow-[0_0_8px_3px_rgba(6,182,212,0.6)] transition-[right] duration-100"
+        style={{ right: `${100 - progress}%` }}
       />
     </div>
   );
